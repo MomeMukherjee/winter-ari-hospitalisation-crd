@@ -194,7 +194,6 @@ bristol/copd-medications-bnf/4b00637c
 # opencodelists.org/codelist/bristol/asthma-medications-bnf/
 # bristol/asthma-medications-bnf/<version>
 
-mkdir -p codelists/local
 
 cat > codelists/local/bronchiectasis-snomed.csv << 'EOF'
 code,term

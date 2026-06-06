@@ -1,0 +1,24 @@
+code,term
+I46,Cardiac arrest
+I460,Cardiac arrest with successful resuscitation
+I461,Sudden cardiac death so described
+I469,Cardiac arrest unspecified
+I47,Paroxysmal tachycardia
+I470,Re-entry ventricular arrhythmia
+I471,Supraventricular tachycardia
+I472,Ventricular tachycardia
+I479,Paroxysmal tachycardia unspecified
+I48,Atrial fibrillation and flutter
+I480,Paroxysmal atrial fibrillation
+I481,Persistent atrial fibrillation
+I482,Chronic atrial fibrillation
+I489,Atrial fibrillation and flutter unspecified
+I49,Other cardiac arrhythmias
+I490,Ventricular fibrillation and flutter
+I491,Atrial premature depolarization
+I492,Junctional premature depolarization
+I493,Ventricular premature depolarization
+I494,Other and unspecified premature depolarization
+I495,Sick sinus syndrome
+I498,Other specified cardiac arrhythmias
+I499,Cardiac arrhythmia unspecified
