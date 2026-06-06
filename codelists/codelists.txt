@@ -1,0 +1,275 @@
+# =================================================================
+# STUDY: Winter ARI Hospitalisation with CRD
+# Repo: MomeMukherjee/winter-ari-hospitalisation-crd
+# Last verified: June 2026
+#
+# KEY:
+#   [SPECIFIC]   = use for PRIMARY analysis population/outcome definition
+#   [SENSITIVE]  = use for SENSITIVITY analyses (broader capture)
+#   [GAP]        = missing → see action list for Quint meeting
+#   bristol/     = Quint/Whittaker reviewed, Imperial/Bristol
+#   opensafely/  = Bennett Institute validated
+#   nhsd/        = NHS Digital refset (official, no clinical review needed)
+# =================================================================
+
+
+# =================================================================
+# SECTION 1: CRD DEFINITIONS → PRIMARY CARE (SNOMED, TPP SystmOne)
+# =================================================================
+
+# --- ASTHMA diagnosis (primary care) ---
+# [SPECIFIC] 36 codes. Whittaker/Quint. CONVALESCENCE project
+bristol/exacerbations-of-asthma/0f9086f7
+
+# --- COPD exacerbations (primary care) ---
+# [SENSITIVE] 53 codes. Whittaker/Quint. CONVALESCENCE project
+# NOTE: contains influenza, RSV, COVID LRTI codes too →
+# disentangle carefully when using as COPD vs ARI definition
+bristol/exacerbations-of-copd/768113c1
+
+# --- ILD (primary care) ---
+# [SENSITIVE] 111 codes. Whittaker/Quint. CONVALESCENCE project
+# CAUTION: broad → includes occupational, drug-induced, radiation ILD
+# Use bristol/pulmonary-fibrosis-interstitial-lung-disease for specific
+bristol/ild-snomed/2f3e3051
+
+# --- BRONCHIECTASIS (primary care) ---
+# [SENSITIVE] Covers bronchiectasis + CF + fibrosing lung disease combined
+# CTV3 coding system → older but widely used in OpenSAFELY studies
+# [GAP] No SNOMED-only bronchiectasis codelist exists in bristol/ or opensafely/
+# Discuss with Quint: create new bristol/bronchiectasis-snomed/
+opensafely/other-respiratory-conditions/2020-05-14
+
+
+# =================================================================
+# SECTION 2: CRD DEFINITIONS → HOSPITAL (ICD-10, APCS)
+# =================================================================
+
+# --- ASTHMA (hospital) ---
+# [SPECIFIC] 6 codes. J45*, J46. Quint/Whittaker reviewed. Aug 2025
+bristol/asthma/3a558edf
+
+# --- COPD (hospital) ---
+# [SPECIFIC] 11 codes. J41, J42, J43*, J44*. Quint/Whittaker. Aug 2025
+# Combines: COPD diagnosis + exacerbation secondary care + copd_icd10
+bristol/copd/0031c5f4
+
+# --- ILD (hospital) NARROW ---
+# [SPECIFIC] 3 codes only. J841, J848, J849 (pulmonary fibrosis/IPF)
+# Quint/Whittaker reviewed. Aug 2025
+# USE FOR: primary analysis specific ILD definition
+bristol/pulmonary-fibrosis-interstitial-lung-disease/33de137c
+
+# --- ILD (hospital) BROAD ---
+# [SENSITIVE] 33 codes. Quint/Whittaker reviewed. Aug 2025
+# Includes aspergillosis, HIV pneumonitis, occupational lung disease
+# USE FOR: sensitivity analysis broader ILD definition
+bristol/interstitial-lung-disease-icd10/69d512b4
+
+# --- BRONCHIECTASIS (hospital) ---
+# [GAP] No bristol/ or opensafely/ ICD-10 bronchiectasis hospital codelist
+# ICD-10 code is J47 (J47.0 with acute lower resp infection, J47.1 exacerbation)
+# Simple → discuss with Quint: create bristol/bronchiectasis-icd10/
+# TEMPORARY: use ICD-10 J47* directly in ehrQL dataset_definition.py
+# until formal codelist created
+
+
+# =================================================================
+# SECTION 3: ARI OUTCOMES → HOSPITAL (ICD-10, APCS)
+# =================================================================
+
+# --- PNEUMONIA (hospital) ---
+# [SPECIFIC] 15 codes. J10-J18, B012, B052, B206, B250, J851, U04
+# Replicated from opensafely/pneumonia-secondary-care. Quint team signed off
+bristol/pneumonia-secondary-care/50c59f7f
+
+# --- COVID-19 (hospital) ---
+# [SPECIFIC] 2 codes. U07.1 (confirmed), U07.2 (clinical diagnosis)
+# OpenSAFELY original. Widely used in published studies
+opensafely/covid-identification/2020-06-03
+
+# --- INFLUENZA (hospital) ---
+# [SPECIFIC] J09*, J10*, J11* → seasonal and pandemic influenza
+# [GAP] No standalone bristol/ influenza ICD-10 hospital codelist
+# opensafely/influenza-complications-icd10 covers complications only
+# Discuss with Quint: create bristol/influenza-secondary-care-icd10/
+# TEMPORARY: use ICD-10 J09*, J10*, J11* directly in ehrQL
+# until formal codelist created
+
+# --- RSV (hospital) ---
+# [SPECIFIC] J21.0 (RSV bronchiolitis), B97.4 (RSV as cause)
+# [GAP] No validated ICD-10 RSV hospital codelist in bristol/ or opensafely/
+# Discuss with Quint: create bristol/rsv-secondary-care-icd10/
+# TEMPORARY: code directly in ehrQL until formal codelist created
+
+# --- ARI NON-SPECIFIC (hospital, secondary care) ---
+# [SENSITIVE] ICD-10. Adapted from WHO ILI definition
+# Checked by Charlotte Warren-Gash. Aug 2024
+# USE FOR: sensitivity analysis → broad ARI capture
+opensafely/acute-respiratory-illness-secondary-care/680e1eda
+
+
+# =================================================================
+# SECTION 4: ARI OUTCOMES → PRIMARY CARE (SNOMED, TPP)
+# =================================================================
+
+# --- PNEUMONIA (primary care) ---
+# [SENSITIVE] 102 codes. Whittaker/Quint. CONVALESCENCE project
+# Includes COVID pneumonia, influenza, RSV, bacterial, atypical, CAP
+bristol/pneumonia-snomed/615d16bb
+
+# --- URTI (primary care) ---
+# [SENSITIVE] 77 codes. Whittaker/Quint. CONVALESCENCE project
+# Sinusitis, pharyngitis, laryngitis. Background/context variable
+bristol/urti-snomed/484da386
+
+# --- RSV (primary care) ---
+# [SENSITIVE] Quint-checked. Aug 2024
+# Use for primary care RSV identification
+opensafely/rsv-identification-primary-care/47b6884f
+
+
+# =================================================================
+# SECTION 5: ACUTE CARDIAC EVENTS → HOSPITAL (ICD-10, APCS)
+# =================================================================
+
+# --- MYOCARDIAL INFARCTION (hospital) ---
+# [SPECIFIC] OpenSAFELY validated
+opensafely/myocardial-infarction/2020-06-25
+
+# --- HEART FAILURE (hospital) ---
+# [SPECIFIC] OpenSAFELY validated
+# [GAP] Version hash unconfirmed → verify at:
+# opencodelists.org/codelist/opensafely/incident-heart-failure-1/
+# opensafely/incident-heart-failure-1/<version>
+
+# --- CARDIAC ARREST / ARRHYTHMIA ---
+# [GAP] No confirmed opensafely/ codelist found for I46*, I47-I49
+# Discuss with Quint or use ICD-10 codes directly in ehrQL
+
+
+# =================================================================
+# SECTION 6: MODIFIABLE RISK FACTORS
+# =================================================================
+
+# --- SMOKING STATUS ---
+# [GAP] bristol/smoking-clear-smoke-eversmoke is CTV3 only (old system)
+# Need SNOMED version for TPP. Options:
+# opensafely/smoking-status-clear/  ← check version
+# Discuss with Quint team
+
+# --- INFLUENZA VACCINATION ---
+# [SPECIFIC] Official NHSD refset. Most recent version Sep 2025
+nhsd-primary-care-domain-refsets/flu_cod/20250627
+
+# --- PNEUMOCOCCAL VACCINATION ---
+# [GAP] Confirm latest opensafely/ version
+# opensafely/pneumococcal-vaccination/<version>
+
+# --- COVID VACCINATION ---
+# Handled via TPP vaccination table in ehrQL directly →
+# not a codelist issue
+
+# --- RSV VACCINATION ---
+# [GAP] New vaccine (2023/24). No validated codelist confirmed yet
+# Discuss with Quint → may need creating from scratch
+# Check: opensafely/rsv-vaccination/ or bristol/ → not found
+
+# --- BMI, CHOLESTEROL, BLOOD PRESSURE ---
+# Retrieved as numerical values from TPP tables in ehrQL →
+# not codelist-based. No codelist needed.
+
+# --- ORAL CORTICOSTEROIDS (medications) ---
+# [SPECIFIC] BNF. Whittaker/Quint. CONVALESCENCE project
+bristol/copd-exacerbation-medications-bnf/31f0f047
+
+# --- COPD MEDICATIONS ---
+# [SENSITIVE] BNF. 31 codes. Whittaker/Quint. CONVALESCENCE project
+# WARNING: medication codelists go out of date quickly (dm+d updated weekly)
+# Check for new inhalers/biologics before running on real data
+bristol/copd-medications-bnf/4b00637c
+
+# --- ASTHMA MEDICATIONS ---
+# [GAP] Version hash unconfirmed → verify at:
+# opencodelists.org/codelist/bristol/asthma-medications-bnf/
+# bristol/asthma-medications-bnf/<version>
+
+mkdir -p codelists/local
+
+cat > codelists/local/bronchiectasis-snomed.csv << 'EOF'
+code,term
+12295008,Bronchiectasis
+195984007,Recurrent bronchiectasis
+195985008,Post-infective bronchiectasis
+23022004,Tuberculous bronchiectasis
+77593006,Congenital bronchiectasis
+EOF
+
+cat > codelists/local/bronchiectasis-icd10.csv << 'EOF'
+code,term
+J47,Bronchiectasis
+J470,Bronchiectasis with acute lower respiratory infection
+J471,Bronchiectasis with acute exacerbation
+J479,Bronchiectasis uncomplicated
+EOF
+
+cat > codelists/local/influenza-icd10.csv << 'EOF'
+code,term
+J09,Influenza due to certain identified influenza viruses
+J090,Influenza due to identified avian influenza virus with pneumonia
+J091,Influenza due to identified avian influenza virus with other respiratory manifestations
+J092,Influenza due to identified avian influenza virus with gastrointestinal manifestations
+J098,Influenza due to identified avian influenza virus with other manifestations
+J10,Influenza due to other identified influenza virus
+J100,Influenza due to other identified influenza virus with pneumonia
+J101,Influenza due to other identified influenza virus with other respiratory manifestations
+J108,Influenza due to other identified influenza virus with other manifestations
+J11,Influenza due to unidentified influenza virus
+J110,Influenza due to unidentified influenza virus with pneumonia
+J111,Influenza due to unidentified influenza virus with other respiratory manifestations
+J118,Influenza due to unidentified influenza virus with other manifestations
+EOF
+
+cat > codelists/local/rsv-icd10.csv << 'EOF'
+code,term
+J121,Respiratory syncytial virus pneumonia
+J205,Acute bronchitis due to respiratory syncytial virus
+J210,Acute bronchiolitis due to respiratory syncytial virus
+B974,Respiratory syncytial virus as the cause of diseases classified elsewhere
+EOF
+
+cat > codelists/local/heart-failure-icd10.csv << 'EOF'
+code,term
+I50,Heart failure
+I500,Congestive heart failure
+I501,Left ventricular failure
+I509,Heart failure unspecified
+I110,Hypertensive heart disease with heart failure
+EOF
+
+cat > codelists/local/cardiac-arrest-arrhythmia-icd10.csv << 'EOF'
+code,term
+I46,Cardiac arrest
+I460,Cardiac arrest with successful resuscitation
+I461,Sudden cardiac death so described
+I469,Cardiac arrest unspecified
+I47,Paroxysmal tachycardia
+I470,Re-entry ventricular arrhythmia
+I471,Supraventricular tachycardia
+I472,Ventricular tachycardia
+I479,Paroxysmal tachycardia unspecified
+I48,Atrial fibrillation and flutter
+I480,Paroxysmal atrial fibrillation
+I481,Persistent atrial fibrillation
+I482,Chronic atrial fibrillation
+I489,Atrial fibrillation and flutter unspecified
+I49,Other cardiac arrhythmias
+I490,Ventricular fibrillation and flutter
+I491,Atrial premature depolarization
+I492,Junctional premature depolarization
+I493,Ventricular premature depolarization
+I494,Other and unspecified premature depolarization
+I495,Sick sinus syndrome
+I498,Other specified cardiac arrhythmias
+I499,Cardiac arrhythmia unspecified
+EOF
