@@ -77,3 +77,33 @@
 | Annual review codes asthma/COPD | Not yet identified | Search opencodelists.org |
 | Self-management plan codes | Not yet identified | Search opencodelists.org |
 
+
+## DISEASE MANAGEMENT INDICATORS
+
+| Variable | System | Specificity | Source | CSV file | Status |
+|---|---|---|---|---|---|
+| Asthma annual review | SNOMED | SPECIFIC | OpenCodelists opensafely ~ QOF v44 | opensafely-asthma-annual-review-qof.csv | ⏳ to download |
+| COPD annual review + rescue packs | CTV3 | SENSITIVE | OpenCodelists opensafely ~ ICS research | opensafely-copd-rescue-packs-and-annual-reviews.csv | ⏳ to download ~ CTV3 only |
+| ICS high dose inhalers | dm+d | SPECIFIC | OpenCodelists opensafely ~ BTS-SIGN | opensafely-high-dose-ics-inhalers.csv | ⏳ to download |
+| ICS low/medium dose inhalers | dm+d | SPECIFIC | OpenCodelists opensafely ~ BTS-SIGN | opensafely-low-and-medium-dose-ics-inhalers.csv | ⏳ to download |
+| COPD ICS inhalers | dm+d | SPECIFIC | NHSD COPDICSDRUG_COD refset Sep 2025 | nhs-drug-refsets-copdicsdrug_cod.csv | ⏳ to download |
+| Asthma self-management plan | SNOMED | ~ | [GAP] No codelist exists | ~ | ❌ needs creating |
+| COPD self-management plan | SNOMED | ~ | [GAP] No codelist exists | ~ | ❌ needs creating |
+| RTI primary care proxy | SNOMED | SENSITIVE | Use bristol-urti-snomed + bristol-pneumonia-snomed combined | already downloaded | ✅ use existing |
+
+## UPDATED GAPS LIST ~ FOR QUINT MEETING
+
+| Gap | Priority | Notes |
+|---|---|---|
+| Bronchiectasis SNOMED + ICD-10 | High ~ primary outcome | Submit to opencodelists with Quint endorsement |
+| Influenza ICD-10 hospital | High ~ primary outcome | Consider formal submission to opensafely org |
+| RSV ICD-10 hospital | High ~ primary outcome | Consider formal submission to opensafely org |
+| Heart failure ICD-10 | Medium | Consider formal submission |
+| Asthma self-management plan SNOMED | Medium | Create new from SNOMED 182836005 |
+| COPD self-management plan SNOMED | Medium | Create new ~ discuss scope |
+| COPD annual review SNOMED | Medium | CTV3 version exists ~ SNOMED version needed |
+| RSV vaccination | High ~ risk factor | New vaccine ~ no codelist anywhere |
+| Pneumococcal vaccination | Medium | Verify version on opencodelists.org |
+| Smoking unclear SNOMED | Low ~ sensitivity only | Verify version hash |
+| Asthma medications BNF | Medium | Verify version hash |
+

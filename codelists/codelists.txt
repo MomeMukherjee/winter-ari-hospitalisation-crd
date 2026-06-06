@@ -272,3 +272,55 @@ I495,Sick sinus syndrome
 I498,Other specified cardiac arrhythmias
 I499,Cardiac arrhythmia unspecified
 EOF
+# =================================================================
+# SECTION 7: DISEASE MANAGEMENT INDICATORS
+# =================================================================
+
+# --- ASTHMA ANNUAL REVIEW (SNOMED) ---
+# [SPECIFIC] 10 codes ~ QOF Business Rules v44 reference set
+# Signed off: Richard Croker & Brian MacKenna ~ Feb 2021
+# https://www.opencodelists.org/codelist/opensafely/asthma-annual-review-qof/33eeb7da/
+opensafely/asthma-annual-review-qof/33eeb7da
+
+# --- COPD ANNUAL REVIEW + RESCUE PACKS ---
+# [SENSITIVE] 7 codes ~ CTV3 only ~ NOT SNOMED
+# Covers: COPD annual review, monitoring, rescue pack issue
+# CAUTION: CTV3 system ~ may have limited coverage in TPP post-2018
+# SNOMED version does not exist ~ flagged as gap for Quint meeting
+# https://www.opencodelists.org/codelist/opensafely/copd-rescue-packs-and-annual-reviews/2020-05-15/
+opensafely/copd-rescue-packs-and-annual-reviews/2020-05-15
+
+# --- ICS HIGH DOSE INHALERS (dm+d) ---
+# [SPECIFIC] dm+d ~ based on OpenPrescribing/BTS-SIGN guidance
+# WARNING: dm+d updated weekly ~ verify before real data run
+# https://www.opencodelists.org/codelist/opensafely/high-dose-ics-inhalers/2020-05-05/
+opensafely/high-dose-ics-inhalers/2020-05-05
+
+# --- ICS LOW AND MEDIUM DOSE INHALERS (dm+d) ---
+# [SPECIFIC] dm+d ~ based on OpenPrescribing/BTS-SIGN guidance
+# WARNING: dm+d updated weekly ~ verify before real data run
+# https://www.opencodelists.org/codelist/opensafely/low-and-medium-dose-ics-inhalers/2020-05-05/
+opensafely/low-and-medium-dose-ics-inhalers/2020-05-05
+
+# --- COPD ICS INHALERS ~ NHSD refset (dm+d) ---
+# [SPECIFIC] COPDICSDRUG_COD ~ most recent Sep 2025
+# https://www.opencodelists.org/codelist/nhs-drug-refsets/copdicsdrug_cod/20250912/
+nhs-drug-refsets/copdicsdrug_cod/20250912
+
+# --- ASTHMA WRITTEN SELF-MANAGEMENT PLAN ---
+# [GAP] No validated SNOMED codelist exists on opencodelists.org
+# Known gap across OpenSAFELY studies ~ discuss with Quint team
+# Possible approach: create from SNOMED parent 182836005
+# (Asthma action plan given) and child concepts
+
+# --- COPD SELF-MANAGEMENT PLAN ---
+# [GAP] No validated SNOMED codelist exists on opencodelists.org
+# Discuss with Quint team ~ may need creating from scratch
+
+# --- RESPIRATORY TRACT INFECTIONS ~ primary care (SNOMED) ---
+# [SENSITIVE] For prior healthcare utilisation variable
+# Lancet Europe 2024 supplementary used RTI codes for burden estimation
+# https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(24)00193-0/
+# Using bristol/urti-snomed (already included above) +
+# bristol/pneumonia-snomed (already included above) as combined RTI proxy
+
