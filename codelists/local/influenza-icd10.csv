@@ -13,33 +13,4 @@ J110,Influenza due to unidentified influenza virus with pneumonia
 J111,Influenza due to unidentified influenza virus with other respiratory manifestations
 J118,Influenza due to unidentified influenza virus with other manifestations
 EOFcat > codelists/local/influenza-icd10.csv << 'EOF'
-code,term
-J09,Influenza due to certain identified influenza viruses
-J090,Influenza due to identified avian influenza virus with pneumonia
-J091,Influenza due to identified avian influenza virus with other respiratory manifestations
-J092,Influenza due to identified avian influenza virus with gastrointestinal manifestations
-J098,Influenza due to identified avian influenza virus with other manifestations
-J10,Influenza due to other identified influenza virus
-J100,Influenza due to other identified influenza virus with pneumonia
-J101,Influenza due to other identified influenza virus with other respiratory manifestations
-J108,Influenza due to other identified influenza virus with other manifestations
-J11,Influenza due to unidentified influenza virus
-J110,Influenza due to unidentified influenza virus with pneumonia
-J111,Influenza due to unidentified influenza virus with other respiratory manifestations
-J118,Influenza due to unidentified influenza virus with other manifestations
-EOFcat > codelists/local/influenza-icd10.csv << 'EOF'
-code,term
-J09,Influenza due to certain identified influenza viruses
-J090,Influenza due to identified avian influenza virus with pneumonia
-J091,Influenza due to identified avian influenza virus with other respiratory manifestations
-J092,Influenza due to identified avian influenza virus with gastrointestinal manifestations
-J098,Influenza due to identified avian influenza virus with other manifestations
-J10,Influenza due to other identified influenza virus
-J100,Influenza due to other identified influenza virus with pneumonia
-J101,Influenza due to other identified influenza virus with other respiratory manifestations
-J108,Influenza due to other identified influenza virus with other manifestations
-J11,Influenza due to unidentified influenza virus
-J110,Influenza due to unidentified influenza virus with pneumonia
-J111,Influenza due to unidentified influenza virus with other respiratory manifestations
-J118,Influenza due to unidentified influenza virus with other manifestations
 
