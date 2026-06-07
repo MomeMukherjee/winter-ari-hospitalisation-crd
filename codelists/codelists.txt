@@ -303,3 +303,120 @@ nhsd-primary-care-domain-refsets/copdinvite_cod/20250912
 # [PRIMARY] 2 codes ~ Rothnie & Quint Clin Epidemiol 2016 validated algorithm
 # COPD DRUG CODES ~ comprehensive dm+d
 # [MEDICATION ~ BROAD] 738 codes ~ NHS C19COPDDRUG_COD ~ Sep 2025
+
+# =================================================================
+# SECTION 12: ARI OUTCOMES ~ MATCHING PRIMARY AND SECONDARY CARE
+# =================================================================
+# KEY MISMATCH ~ what exists in primary vs secondary care:
+#
+# DISEASE     | SECONDARY CARE (ICD-10) | PRIMARY CARE (SNOMED)  | MATCH?
+# ------------|-------------------------|------------------------|--------
+# Pneumonia   | bristol-pneumonia-      | bristol-pneumonia-     | ✅ MATCHED
+#             | secondary-care ✅       | snomed ✅              |
+# COVID-19    | opensafely-covid-       | opensafely-covid-19-   | ⚠ PARTIAL
+#             | identification ✅       | vaccination-given      | (vacc only)
+#             |                         | ❌ NO COVID DIAGNOSIS  |
+#             |                         | SNOMED codelist        |
+# Influenza   | local/influenza-icd10   | opensafely-influenza-  | ⚠ PARTIAL
+#             | ✅ (J09-J11)            | identification-primary | (maximal
+#             |                         | -care-maximal-sens ✅  | sensitivity)
+# RSV         | local/rsv-icd10 ✅     | opensafely-rsv-        | ✅ MATCHED
+#             | (J12.1 J20.5 J21.0     | identification-primary |
+#             |  B97.4)                 | -care ✅               |
+# URTI        | ❌ MISSING secondary   | bristol-urti-snomed ✅ | ❌ MISSING
+#             | care ICD-10 codelist    |                        | ICD-10
+# ARI broad   | opensafely-acute-resp- | opensafely-acute-resp- | ✅ MATCHED
+#             | illness-secondary-care | illness-primary-care ✅ | (both exist)
+#             | ✅                     |                        |
+# GAPS TO FIX:
+# 1. COVID-19 primary care diagnosis SNOMED codelist ~ needed
+# 2. URTI secondary care ICD-10 codelist ~ needed (J00-J06)
+# =================================================================
+
+# --- INFLUENZA ~ primary care (SNOMED) maximal sensitivity ---
+# [SENSITIVE] 371 codes ~ Em Prestige ~ Nov 2025 ~ most recent
+# Use WITH primary care influenza specific list (2 codes from maximal
+# OR 1 code from specific list, within 2 weeks, per WHO ILI definition)
+# https://www.opencodelists.org/codelist/opensafely/influenza-identification-primary-care-maximal-sensitivity/64244ae0/
+opensafely/influenza-identification-primary-care-maximal-sensitivity/64244ae0
+
+# --- COVID-19 DIAGNOSIS ~ primary care (SNOMED) ---
+# [SPECIFIC] OpenSAFELY ~ broad list for minority without vaccination table record
+# NOTE: for most patients use TPP vaccinations table directly in ehrQL
+# https://www.opencodelists.org/codelist/opensafely/covid-19-vaccination-given/41503cb1/
+opensafely/covid-19-vaccination-given/41503cb1
+
+# --- URTI ~ secondary care (ICD-10) ---
+# [GAP] No validated ICD-10 URTI codelist on opencodelists.org
+# Standard WHO ICD-10 codes: J00 (nasopharyngitis), J01* (sinusitis),
+# J02* (pharyngitis), J03* (tonsillitis), J04* (laryngitis/tracheitis),
+# J05* (acute obstructive laryngitis), J06* (other upper RTI)
+# See: codelists/local/urti-icd10.csv
+
+
+# =================================================================
+# SECTION 13: ASTHMA MEDICATIONS ~ complete set
+# =================================================================
+
+# --- ASTHMA MEDICATIONS ~ primary care (BNF) ---
+# [SPECIFIC] Whittaker & Quint ~ CONVALESCENCE project ~ version confirmed
+# https://www.opencodelists.org/codelist/bristol/asthma-medications-bnf/7d1f49e6/
+bristol/asthma-medications-bnf/7d1f49e6
+
+# --- ASTHMA DRUG TREATMENT CODES ~ QOF (dm+d) ---
+# [SPECIFIC] ASTTRT_COD cluster ~ QOF v46 business rules
+# Extracted from SNOMED CT browser ~ SNOMED code 12463601000001108
+# https://www.opencodelists.org/codelist/opensafely/asthma-related-drug-treatment-codes/21d4f6b7/
+opensafely/asthma-related-drug-treatment-codes/21d4f6b7
+
+# --- ASTHMA INHALER ~ salbutamol SABA (dm+d) ---
+# [SPECIFIC] Reliever inhaler ~ proxy for uncontrolled asthma
+# Pressurized + powder inhalation formulations only
+# https://www.opencodelists.org/codelist/opensafely/asthma-inhaler-salbutamol-medication/3b4b5cf0/
+opensafely/asthma-inhaler-salbutamol-medication/3b4b5cf0
+
+# --- ASTHMA INHALER ~ ICS steroid (dm+d) ---
+# [SPECIFIC] Preventer inhaler ~ proxy for asthma treatment step
+# Pressurized + powder inhalation formulations only
+# https://www.opencodelists.org/codelist/opensafely/asthma-inhaler-steroid-medication/392b0745/
+opensafely/asthma-inhaler-steroid-medication/392b0745
+
+# --- NEBULISED ASTHMA AND COPD MEDICATIONS (dm+d) ---
+# [SENSITIVE] BNF Chapter 3 respiratory ~ nebulised route only
+# MacKenna & Croker ~ Apr 2020 ~ updated Dec 2024
+# https://www.opencodelists.org/codelist/opensafely/nebulised-asthma-and-copd-medications/63771945/
+opensafely/nebulised-asthma-and-copd-medications/63771945
+
+
+# =================================================================
+# SECTION 14: VACCINATIONS ~ modifiable risk factors
+# =================================================================
+# Per protocol: influenza, pneumococcal, COVID-19, RSV vaccinations
+
+# --- INFLUENZA VACCINATION (already in repo) ---
+# nhsd-primary-care-domain-refsets/flu_cod/20250627 ~ Section 6 above
+
+# --- PNEUMOCOCCAL VACCINATION (SNOMED) ---
+# [SPECIFIC] 8 codes ~ NHSD PNEUVAC1_COD refset ~ Sep 2025 ~ most recent
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/pneuvac1_cod/20250912/
+nhsd-primary-care-domain-refsets/pneuvac1_cod/20250912
+
+# --- COVID-19 VACCINATION (SNOMED) ---
+# [SPECIFIC] Broad SNOMED list ~ for minority without TPP vaccinations table record
+# Primary method: use TPP vaccinations table directly in ehrQL (most complete)
+# This codelist is backup only for edge cases
+# https://www.opencodelists.org/codelist/opensafely/covid-19-vaccination-given/41503cb1/
+# (already added in Section 12 above ~ no duplicate needed)
+
+# --- RSV VACCINATION (SNOMED + dm+d) ---
+# [SPECIFIC] NHS RSV programme ~ Abrysvo vaccine ~ Sep 2024 onwards
+# Eligible: adults 75-79 years (older adult programme, Sep 2024-)
+# and pregnant women 28-36 weeks (maternal programme, Sep 2024-)
+# No formal opencodelists.org codelist published yet
+# NHS England SNOMED codes confirmed in TPP for Abrysvo:
+# 1991000000109 (RSV vaccination) ~ provisional
+# See: codelists/local/rsv-vaccination-snomed.csv
+# Source: NHS England RSV Vaccination Resources Toolkit Sep 2025
+# https://www.sussex.ics.nhs.uk/wp-content/uploads/sites/9/2025/10/South-East-RSV-tool-kit-2.pdf
+# ACTION: verify exact SNOMED codes with Quint team before real data run
+

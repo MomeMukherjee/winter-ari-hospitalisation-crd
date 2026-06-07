@@ -1,0 +1,23 @@
+code,term
+J00,Acute nasopharyngitis (common cold)
+J010,Acute maxillary sinusitis
+J011,Acute frontal sinusitis
+J012,Acute ethmoidal sinusitis
+J013,Acute sphenoidal sinusitis
+J014,Acute pansinusitis
+J018,Other acute sinusitis
+J019,Acute sinusitis unspecified
+J020,Streptococcal pharyngitis
+J028,Acute pharyngitis due to other specified organisms
+J029,Acute pharyngitis unspecified
+J030,Streptococcal tonsillitis
+J038,Acute tonsillitis due to other specified organisms
+J039,Acute tonsillitis unspecified
+J040,Acute laryngitis
+J041,Acute tracheitis
+J042,Acute laryngotracheitis
+J050,Acute obstructive laryngitis
+J051,Acute epiglottitis
+J060,Acute laryngopharyngitis
+J068,Other acute upper respiratory infections of multiple sites
+J069,Acute upper respiratory infection unspecified
