@@ -345,3 +345,74 @@ opensafely/acute-respiratory-illness-primary-care/3a1da458
 # Remove old version from codelists.txt and replace with:
 # opensafely/rsv-identification-primary-care/13907155
 
+
+# =================================================================
+# SECTION 10: COPD ~ COMPLETE CODELIST SET
+# =================================================================
+
+# --- COPD DIAGNOSIS ~ primary care (SNOMED) BROAD ---
+# [SPECIFIC] 56 codes ~ NHSD COPD_COD refset ~ Sep 2025 ~ most recent
+# Official NHS QOF register codelist ~ actively maintained
+# NOTE: I was wrong earlier ~ COPD_COD DOES exist in NHSD refsets
+# Includes emphysema subtypes, ACOS, acute exacerbation codes
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copd_cod/20250912/
+nhsd-primary-care-domain-refsets/copd_cod/20250912
+
+# --- COPD DIAGNOSIS ~ primary care (SNOMED) NARROW ---
+# [SENSITIVE] 44 codes ~ QCovid risk assessment tool ~ NHSD
+# Used in COVID-19 Population Risk Assessment ~ NHS England
+# Overlaps with NHSD copd_cod but slightly different scope ~
+# use for sensitivity analysis comparing broad vs narrow COPD definition
+# CAUTION: contains one unrecognised code: 10692761000119100 (ACOS)
+# https://www.opencodelists.org/codelist/qcovid/has_copd/7adcea65/
+qcovid/has_copd/7adcea65
+
+# --- COPD RESOLVED ~ primary care (SNOMED) ---
+# [SPECIFIC] 1 code only ~ 941201000000103 (COPD resolved)
+# NHSD COPDRES_COD refset ~ Sep 2025
+# USE TO EXCLUDE resolved COPD from active COPD population definition
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdres_cod/20250912/
+nhsd-primary-care-domain-refsets/copdres_cod/20250912
+
+# --- COPD ANNUAL REVIEW ~ primary care (SNOMED) ---
+# [MODIFIABLE RISK FACTOR] 3 codes ~ QOF Business Rules v44
+# Annual review, 3-monthly review, 6-monthly review
+# Signed off: Richard Croker & Brian MacKenna ~ Feb 2021
+# https://www.opencodelists.org/codelist/opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170/
+opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170
+
+# --- COPD EXACERBATIONS ~ primary care (SNOMED) SPECIFIC ---
+# [SPECIFIC] 9 codes ~ Whittaker & Quint ~ CONVALESCENCE project
+# Pure COPD exacerbation codes only ~ no ARI contamination
+# PREFERRED over bristol/copd-exacerbations-snomed (53 codes) for
+# primary analysis where clean COPD exacerbation definition needed
+# https://www.opencodelists.org/codelist/bristol/copd-exacerbations/2896912f/
+bristol/copd-exacerbations/2896912f
+
+# --- COPD EXACERBATIONS ~ primary care (SNOMED) SENSITIVE ---
+# [SENSITIVE] 53 codes ~ Whittaker & Quint ~ CONVALESCENCE project
+# Broad ~ includes acute bronchitis, RSV, influenza, COVID bronchitis
+# Already in repo as bristol/exacerbations-of-copd ~ same codelist
+# USE FOR: sensitivity analysis broader COPD exacerbation capture
+# https://www.opencodelists.org/codelist/bristol/copd-exacerbations-snomed/162ebd1c/
+bristol/copd-exacerbations-snomed/162ebd1c
+
+# --- COPD EXACERBATION ~ secondary care (ICD-10) ---
+# [SPECIFIC] 2 codes ~ validated algorithm ~ Rothnie & Quint 2016
+# Part of 3-criteria algorithm: (1) COPD exacerbation code any position
+# (2) COPD diagnosis first position (3) LRTI first position + COPD any position
+# Reference: Rothnie KJ, Quint JK et al. Clin Epidemiol. 2016;8:771-782
+# https://www.opencodelists.org/codelist/opensafely/copd-exacerbation/6858db5b/
+opensafely/copd-exacerbation/6858db5b
+
+# --- COPD MEDICATIONS ~ primary care (BNF/dm+d) BROAD ---
+# Already in repo: bristol/copd-medications-bnf/4b00637c
+
+# --- COPD DRUG CODES ~ primary care (dm+d) COMPREHENSIVE ---
+# [SENSITIVE] 738 codes ~ NHS C19COPDDRUG_COD drug refset ~ Sep 2025
+# Most comprehensive COPD drug list available ~ weekly dm+d updates
+# WARNING: 738 codes ~ very broad ~ includes all COPD-related drugs
+# Use for completeness check against bristol/copd-medications-bnf
+# https://www.opencodelists.org/codelist/nhs-drug-refsets/c19copddrug_cod/20250912/
+nhs-drug-refsets/c19copddrug_cod/20250912
+
