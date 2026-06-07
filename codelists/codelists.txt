@@ -416,3 +416,53 @@ opensafely/copd-exacerbation/6858db5b
 # https://www.opencodelists.org/codelist/nhs-drug-refsets/c19copddrug_cod/20250912/
 nhs-drug-refsets/c19copddrug_cod/20250912
 
+
+# =================================================================
+# SECTION 10: COPD ~ COMPLETE CODELIST SET
+# =================================================================
+
+# COPD DIAGNOSIS ~ primary care BROAD
+# [INCLUDE ~ SPECIFIC] 56 codes ~ NHSD COPD_COD refset ~ Sep 2025
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copd_cod/20250912/
+nhsd-primary-care-domain-refsets/copd_cod/20250912
+
+# COPD DIAGNOSIS ~ primary care NARROW
+# [SENSITIVITY] 44 codes ~ QCovid risk assessment ~ NHS England
+# https://www.opencodelists.org/codelist/qcovid/has_copd/7adcea65/
+qcovid/has_copd/7adcea65
+
+# COPD RESOLVED ~ primary care
+# [EXCLUDE] 1 code ~ 941201000000103 ~ NHSD COPDRES_COD ~ Sep 2025
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdres_cod/20250912/
+nhsd-primary-care-domain-refsets/copdres_cod/20250912
+
+# COPD ANNUAL REVIEW ~ primary care
+# [MODIFIABLE] 3 codes ~ QOF v44 ~ Croker & MacKenna Feb 2021
+# https://www.opencodelists.org/codelist/opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170/
+opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170
+
+# COPD CARE REVIEW INVITE ~ primary care
+# [MODIFIABLE] 14 codes ~ NHSD COPDINVITE_COD ~ Sep 2025
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdinvite_cod/20250912/
+nhsd-primary-care-domain-refsets/copdinvite_cod/20250912
+
+# COPD EXACERBATIONS ~ primary care SPECIFIC
+# [PRIMARY] 9 codes ~ Whittaker & Quint ~ CONVALESCENCE Aug 2022
+# https://www.opencodelists.org/codelist/bristol/copd-exacerbations/2896912f/
+bristol/copd-exacerbations/2896912f
+
+# COPD EXACERBATIONS ~ primary care SENSITIVE
+# [SENSITIVITY] 53 codes ~ Whittaker & Quint ~ CONVALESCENCE Apr 2023
+# https://www.opencodelists.org/codelist/bristol/copd-exacerbations-snomed/162ebd1c/
+bristol/copd-exacerbations-snomed/162ebd1c
+
+# COPD EXACERBATION ~ secondary care ICD-10
+# [PRIMARY] 2 codes ~ Rothnie & Quint Clin Epidemiol 2016 validated algorithm
+# https://www.opencodelists.org/codelist/opensafely/copd-exacerbation/6858db5b/
+opensafely/copd-exacerbation/6858db5b
+
+# COPD DRUG CODES ~ comprehensive dm+d
+# [MEDICATION ~ BROAD] 738 codes ~ NHS C19COPDDRUG_COD ~ Sep 2025
+# https://www.opencodelists.org/codelist/nhs-drug-refsets/c19copddrug_cod/20250912/
+nhs-drug-refsets/c19copddrug_cod/20250912
+
