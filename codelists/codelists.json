@@ -107,6 +107,36 @@
       "url": "https://www.opencodelists.org/codelist/bristol/copd-medications-bnf/4b00637c/",
       "downloaded_at": "2026-06-01 05:20:57.469909Z",
       "sha": "821a27601a67cb992663a4a84c4d493d53c4e924"
+    },
+    "opensafely-asthma-annual-review-qof.csv": {
+      "id": "opensafely/asthma-annual-review-qof/33eeb7da",
+      "url": "https://www.opencodelists.org/codelist/opensafely/asthma-annual-review-qof/33eeb7da/",
+      "downloaded_at": "2026-06-07 01:44:31.063999Z",
+      "sha": "6f6f0221706d28a49d74f3c3edc5c627d2cc618c"
+    },
+    "opensafely-copd-rescue-packs-and-annual-reviews.csv": {
+      "id": "opensafely/copd-rescue-packs-and-annual-reviews/2020-05-15",
+      "url": "https://www.opencodelists.org/codelist/opensafely/copd-rescue-packs-and-annual-reviews/2020-05-15/",
+      "downloaded_at": "2026-06-07 01:44:33.139252Z",
+      "sha": "cc9c64601f7254cdd8cc276b00bd8fec75bb7d56"
+    },
+    "opensafely-high-dose-ics-inhalers.csv": {
+      "id": "opensafely/high-dose-ics-inhalers/2020-05-05",
+      "url": "https://www.opencodelists.org/codelist/opensafely/high-dose-ics-inhalers/2020-05-05/",
+      "downloaded_at": "2026-06-07 01:44:33.936370Z",
+      "sha": "c09bea6e956f4f218a7e35931ca092319f1cbd02"
+    },
+    "opensafely-low-and-medium-dose-ics-inhalers.csv": {
+      "id": "opensafely/low-and-medium-dose-ics-inhalers/2020-05-05",
+      "url": "https://www.opencodelists.org/codelist/opensafely/low-and-medium-dose-ics-inhalers/2020-05-05/",
+      "downloaded_at": "2026-06-07 01:44:34.994522Z",
+      "sha": "e73f07cf22e67d9818d733db3b69a1d4c6d71941"
+    },
+    "nhs-drug-refsets-copdicsdrug_cod.csv": {
+      "id": "nhs-drug-refsets/copdicsdrug_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhs-drug-refsets/copdicsdrug_cod/20250912/",
+      "downloaded_at": "2026-06-07 01:44:36.020278Z",
+      "sha": "54d8e41aa77513a0258cb2d9e7beb53da1bf7c55"
     }
   }
 }
