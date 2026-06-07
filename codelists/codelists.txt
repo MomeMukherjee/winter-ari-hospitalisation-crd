@@ -10,195 +10,136 @@
 #   bristol/     = Quint/Whittaker reviewed, Imperial/Bristol
 #   opensafely/  = Bennett Institute validated
 #   nhsd/        = NHS Digital refset (official, no clinical review needed)
-# =================================================================
 
-
-# =================================================================
 # SECTION 1: CRD DEFINITIONS → PRIMARY CARE (SNOMED, TPP SystmOne)
-# =================================================================
-
 # --- ASTHMA diagnosis (primary care) ---
 # [SPECIFIC] 36 codes. Whittaker/Quint. CONVALESCENCE project
 bristol/exacerbations-of-asthma/0f9086f7
-
 # --- COPD exacerbations (primary care) ---
 # [SENSITIVE] 53 codes. Whittaker/Quint. CONVALESCENCE project
 # NOTE: contains influenza, RSV, COVID LRTI codes too →
 # disentangle carefully when using as COPD vs ARI definition
 bristol/exacerbations-of-copd/768113c1
-
 # --- ILD (primary care) ---
 # [SENSITIVE] 111 codes. Whittaker/Quint. CONVALESCENCE project
 # CAUTION: broad → includes occupational, drug-induced, radiation ILD
 # Use bristol/pulmonary-fibrosis-interstitial-lung-disease for specific
 bristol/ild-snomed/2f3e3051
-
 # --- BRONCHIECTASIS (primary care) ---
 # [SENSITIVE] Covers bronchiectasis + CF + fibrosing lung disease combined
 # CTV3 coding system → older but widely used in OpenSAFELY studies
 # [GAP] No SNOMED-only bronchiectasis codelist exists in bristol/ or opensafely/
 # Discuss with Quint: create new bristol/bronchiectasis-snomed/
 opensafely/other-respiratory-conditions/2020-05-14
-
-
-# =================================================================
 # SECTION 2: CRD DEFINITIONS → HOSPITAL (ICD-10, APCS)
-# =================================================================
-
 # --- ASTHMA (hospital) ---
 # [SPECIFIC] 6 codes. J45*, J46. Quint/Whittaker reviewed. Aug 2025
 bristol/asthma/3a558edf
-
 # --- COPD (hospital) ---
 # [SPECIFIC] 11 codes. J41, J42, J43*, J44*. Quint/Whittaker. Aug 2025
 # Combines: COPD diagnosis + exacerbation secondary care + copd_icd10
 bristol/copd/0031c5f4
-
 # --- ILD (hospital) NARROW ---
 # [SPECIFIC] 3 codes only. J841, J848, J849 (pulmonary fibrosis/IPF)
 # Quint/Whittaker reviewed. Aug 2025
 # USE FOR: primary analysis specific ILD definition
 bristol/pulmonary-fibrosis-interstitial-lung-disease/33de137c
-
 # --- ILD (hospital) BROAD ---
 # [SENSITIVE] 33 codes. Quint/Whittaker reviewed. Aug 2025
 # Includes aspergillosis, HIV pneumonitis, occupational lung disease
 # USE FOR: sensitivity analysis broader ILD definition
 bristol/interstitial-lung-disease-icd10/69d512b4
-
 # --- BRONCHIECTASIS (hospital) ---
 # [GAP] No bristol/ or opensafely/ ICD-10 bronchiectasis hospital codelist
 # ICD-10 code is J47 (J47.0 with acute lower resp infection, J47.1 exacerbation)
 # Simple → discuss with Quint: create bristol/bronchiectasis-icd10/
 # TEMPORARY: use ICD-10 J47* directly in ehrQL dataset_definition.py
 # until formal codelist created
-
-
-# =================================================================
 # SECTION 3: ARI OUTCOMES → HOSPITAL (ICD-10, APCS)
-# =================================================================
-
 # --- PNEUMONIA (hospital) ---
 # [SPECIFIC] 15 codes. J10-J18, B012, B052, B206, B250, J851, U04
 # Replicated from opensafely/pneumonia-secondary-care. Quint team signed off
 bristol/pneumonia-secondary-care/50c59f7f
-
 # --- COVID-19 (hospital) ---
 # [SPECIFIC] 2 codes. U07.1 (confirmed), U07.2 (clinical diagnosis)
 # OpenSAFELY original. Widely used in published studies
 opensafely/covid-identification/2020-06-03
-
 # --- INFLUENZA (hospital) ---
 # [SPECIFIC] J09*, J10*, J11* → seasonal and pandemic influenza
 # [GAP] No standalone bristol/ influenza ICD-10 hospital codelist
 # opensafely/influenza-complications-icd10 covers complications only
 # Discuss with Quint: create bristol/influenza-secondary-care-icd10/
 # TEMPORARY: use ICD-10 J09*, J10*, J11* directly in ehrQL
-# until formal codelist created
-
 # --- RSV (hospital) ---
 # [SPECIFIC] J21.0 (RSV bronchiolitis), B97.4 (RSV as cause)
 # [GAP] No validated ICD-10 RSV hospital codelist in bristol/ or opensafely/
 # Discuss with Quint: create bristol/rsv-secondary-care-icd10/
 # TEMPORARY: code directly in ehrQL until formal codelist created
-
 # --- ARI NON-SPECIFIC (hospital, secondary care) ---
 # [SENSITIVE] ICD-10. Adapted from WHO ILI definition
 # Checked by Charlotte Warren-Gash. Aug 2024
 # USE FOR: sensitivity analysis → broad ARI capture
 opensafely/acute-respiratory-illness-secondary-care/680e1eda
-
-
-# =================================================================
 # SECTION 4: ARI OUTCOMES → PRIMARY CARE (SNOMED, TPP)
-# =================================================================
-
 # --- PNEUMONIA (primary care) ---
 # [SENSITIVE] 102 codes. Whittaker/Quint. CONVALESCENCE project
 # Includes COVID pneumonia, influenza, RSV, bacterial, atypical, CAP
 bristol/pneumonia-snomed/615d16bb
-
 # --- URTI (primary care) ---
 # [SENSITIVE] 77 codes. Whittaker/Quint. CONVALESCENCE project
 # Sinusitis, pharyngitis, laryngitis. Background/context variable
 bristol/urti-snomed/484da386
-
 # --- RSV (primary care) ---
 # [SENSITIVE] Quint-checked. Aug 2024
 # Use for primary care RSV identification
 opensafely/rsv-identification-primary-care/13907155
-
-
-# =================================================================
 # SECTION 5: ACUTE CARDIAC EVENTS → HOSPITAL (ICD-10, APCS)
-# =================================================================
-
 # --- MYOCARDIAL INFARCTION (hospital) ---
 # [SPECIFIC] OpenSAFELY validated
 opensafely/myocardial-infarction/2020-06-25
-
 # --- HEART FAILURE (hospital) ---
-# [SPECIFIC] OpenSAFELY validated
 # [GAP] Version hash unconfirmed → verify at:
 # opencodelists.org/codelist/opensafely/incident-heart-failure-1/
 # opensafely/incident-heart-failure-1/<version>
-
 # --- CARDIAC ARREST / ARRHYTHMIA ---
 # [GAP] No confirmed opensafely/ codelist found for I46*, I47-I49
 # Discuss with Quint or use ICD-10 codes directly in ehrQL
-
-
-# =================================================================
 # SECTION 6: MODIFIABLE RISK FACTORS
-# =================================================================
-
 # --- SMOKING STATUS ---
 # [GAP] bristol/smoking-clear-smoke-eversmoke is CTV3 only (old system)
 # Need SNOMED version for TPP. Options:
 # opensafely/smoking-status-clear/  ← check version
 # Discuss with Quint team
-
 # --- INFLUENZA VACCINATION ---
 # [SPECIFIC] Official NHSD refset. Most recent version Sep 2025
 nhsd-primary-care-domain-refsets/flu_cod/20250627
-
 # --- PNEUMOCOCCAL VACCINATION ---
 # [GAP] Confirm latest opensafely/ version
 # opensafely/pneumococcal-vaccination/<version>
-
 # --- COVID VACCINATION ---
 # Handled via TPP vaccination table in ehrQL directly →
 # not a codelist issue
-
 # --- RSV VACCINATION ---
 # [GAP] New vaccine (2023/24). No validated codelist confirmed yet
 # Discuss with Quint → may need creating from scratch
 # Check: opensafely/rsv-vaccination/ or bristol/ → not found
-
 # --- BMI, CHOLESTEROL, BLOOD PRESSURE ---
 # Retrieved as numerical values from TPP tables in ehrQL →
 # not codelist-based. No codelist needed.
-
 # --- ORAL CORTICOSTEROIDS (medications) ---
 # [SPECIFIC] BNF. Whittaker/Quint. CONVALESCENCE project
 bristol/copd-exacerbation-medications-bnf/31f0f047
-
 # --- COPD MEDICATIONS ---
 # [SENSITIVE] BNF. 31 codes. Whittaker/Quint. CONVALESCENCE project
 # WARNING: medication codelists go out of date quickly (dm+d updated weekly)
 # Check for new inhalers/biologics before running on real data
 bristol/copd-medications-bnf/4b00637c
-
 # --- ASTHMA MEDICATIONS ---
-# [GAP] Version hash unconfirmed → verify at:
 # opencodelists.org/codelist/bristol/asthma-medications-bnf/
 # bristol/asthma-medications-bnf/<version>
-
-
 # Signed off: Richard Croker & Brian MacKenna ~ Feb 2021
 # https://www.opencodelists.org/codelist/opensafely/asthma-annual-review-qof/33eeb7da/
 opensafely/asthma-annual-review-qof/33eeb7da
-
 # --- COPD ANNUAL REVIEW + RESCUE PACKS ---
 # [SENSITIVE] 7 codes ~ CTV3 only ~ NOT SNOMED
 # Covers: COPD annual review, monitoring, rescue pack issue
@@ -206,46 +147,32 @@ opensafely/asthma-annual-review-qof/33eeb7da
 # SNOMED version does not exist ~ flagged as gap for Quint meeting
 # https://www.opencodelists.org/codelist/opensafely/copd-rescue-packs-and-annual-reviews/2020-05-15/
 opensafely/copd-rescue-packs-and-annual-reviews/2020-05-15
-
 # --- ICS HIGH DOSE INHALERS (dm+d) ---
 # [SPECIFIC] dm+d ~ based on OpenPrescribing/BTS-SIGN guidance
 # WARNING: dm+d updated weekly ~ verify before real data run
 # https://www.opencodelists.org/codelist/opensafely/high-dose-ics-inhalers/2020-05-05/
 opensafely/high-dose-ics-inhalers/2020-05-05
-
 # --- ICS LOW AND MEDIUM DOSE INHALERS (dm+d) ---
-# [SPECIFIC] dm+d ~ based on OpenPrescribing/BTS-SIGN guidance
-# WARNING: dm+d updated weekly ~ verify before real data run
 # https://www.opencodelists.org/codelist/opensafely/low-and-medium-dose-ics-inhalers/2020-05-05/
 opensafely/low-and-medium-dose-ics-inhalers/2020-05-05
-
 # --- COPD ICS INHALERS ~ NHSD refset (dm+d) ---
 # [SPECIFIC] COPDICSDRUG_COD ~ most recent Sep 2025
 # https://www.opencodelists.org/codelist/nhs-drug-refsets/copdicsdrug_cod/20250912/
 nhs-drug-refsets/copdicsdrug_cod/20250912
-
 # --- ASTHMA WRITTEN SELF-MANAGEMENT PLAN ---
 # [GAP] No validated SNOMED codelist exists on opencodelists.org
 # Known gap across OpenSAFELY studies ~ discuss with Quint team
 # Possible approach: create from SNOMED parent 182836005
 # (Asthma action plan given) and child concepts
-
 # --- COPD SELF-MANAGEMENT PLAN ---
-# [GAP] No validated SNOMED codelist exists on opencodelists.org
 # Discuss with Quint team ~ may need creating from scratch
-
 # --- RESPIRATORY TRACT INFECTIONS ~ primary care (SNOMED) ---
 # [SENSITIVE] For prior healthcare utilisation variable
 # Lancet Europe 2024 supplementary used RTI codes for burden estimation
 # https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(24)00193-0/
 # Using bristol/urti-snomed (already included above) +
 # bristol/pneumonia-snomed (already included above) as combined RTI proxy
-
-
-# =================================================================
 # SECTION 8: CRD DIAGNOSIS ~ PRIMARY CARE SNOMED (population definition)
-# =================================================================
-
 # --- ASTHMA DIAGNOSIS ~ primary care (SNOMED) ---
 # [SPECIFIC] 141 codes ~ NHSD AST_COD refset ~ Sep 2025 (most recent)
 # Official NHS QOF refset ~ actively maintained ~ best TPP coverage
@@ -253,75 +180,32 @@ nhs-drug-refsets/copdicsdrug_cod/20250912
 # auto-converted from Read, includes monitoring/triggers/admin codes)
 # https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/
 nhsd-primary-care-domain-refsets/ast_cod/20250912
-
 # --- ASTHMA RESOLVED ~ primary care (SNOMED) ---
 # [SPECIFIC] PINCER/PRIMIS ~ use to EXCLUDE patients with resolved asthma
 # from active asthma CRD population definition
 # https://www.opencodelists.org/codelist/pincer/ast_res/v1/
 # [GAP] Verify exact version ~ check pincer/ast_res/ on opencodelists.org
 # pincer/ast_res/<version>
-
 # --- COPD DIAGNOSIS ~ primary care (SNOMED) ---
 # [GAP] No equivalent NHSD COPD_COD refset confirmed yet
 # opensafely/current-copd/2020-05-06 exists but is CTV3
 # Check: nhsd-primary-care-domain-refsets/copd_cod/ on opencodelists.org
 # [TEMPORARY] using bristol/exacerbations-of-copd for COPD identification
 # until confirmed SNOMED diagnosis codelist found
-
-
-# =================================================================
-# SECTION 8: CRD DIAGNOSIS ~ PRIMARY CARE SNOMED (population definition)
-# =================================================================
-
-# --- ASTHMA DIAGNOSIS ~ primary care (SNOMED) ---
-# [SPECIFIC] 141 codes ~ NHSD AST_COD refset ~ Sep 2025 (most recent)
-# Official NHS QOF refset ~ actively maintained ~ best TPP coverage
-# PREFERRED over opensafely/asthma-diagnosis-snomed (320 codes, 2020 only,
-# auto-converted from Read, includes monitoring/triggers/admin codes)
-# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/
-nhsd-primary-care-domain-refsets/ast_cod/20250912
-
-# --- ASTHMA RESOLVED ~ primary care (SNOMED) ---
-# [SPECIFIC] PINCER/PRIMIS ~ use to EXCLUDE patients with resolved asthma
-# from active asthma CRD population definition
-# https://www.opencodelists.org/codelist/pincer/ast_res/v1/
-# [GAP] Verify exact version ~ check pincer/ast_res/ on opencodelists.org
-# pincer/ast_res/<version>
-
-# --- COPD DIAGNOSIS ~ primary care (SNOMED) ---
-# [GAP] No equivalent NHSD COPD_COD refset confirmed yet
-# opensafely/current-copd/2020-05-06 exists but is CTV3
-# Check: nhsd-primary-care-domain-refsets/copd_cod/ on opencodelists.org
-# [TEMPORARY] using bristol/exacerbations-of-copd for COPD identification
-# until confirmed SNOMED diagnosis codelist found
-
-
-# =================================================================
 # SECTION 9: CRD DIAGNOSIS ~ PRIMARY CARE SNOMED
 # (population definition ~ who HAS each CRD)
-# =================================================================
-
 # --- ASTHMA DIAGNOSIS ~ primary care ---
 # [SPECIFIC] 141 codes ~ NHSD AST_COD refset ~ Sep 2025 ~ most recent
-# Official NHS QOF refset ~ actively maintained ~ best TPP coverage
 # PREFERRED over opensafely/asthma-diagnosis-snomed (320 codes, 2020,
 # auto-converted from Read ~ includes monitoring/triggers/admin codes)
-# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/
-nhsd-primary-care-domain-refsets/ast_cod/20250912
-
 # --- ASTHMA MILD/INTERMITTENT DIAGNOSIS ~ primary care ---
 # [SENSITIVE] 23 codes ~ NHSD MILDINTAST_COD refset ~ Sep 2025
 # Use for subgroup analysis ~ mild vs moderate/severe asthma
 # https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/mildintast_cod/20250912/
 nhsd-primary-care-domain-refsets/mildintast_cod/20250912
-
 # --- ASTHMA RESOLVED ~ primary care ---
-# [SPECIFIC] PINCER/PRIMIS ~ use to EXCLUDE patients with resolved asthma
-# from active asthma CRD population definition
-# https://www.opencodelists.org/codelist/pincer/ast_res/v1/
 # [GAP] Version confirmed as v1 ~ verify hash before running on real data
-pincer/ast_res/v1
-
+pincer/ast_res/v1.8
 # --- COPD DIAGNOSIS ~ primary care ---
 # [GAP] No NHSD COPD_COD diagnosis refset exists (unlike asthma)
 # NHSD only has: copdinvite_cod (14 care review invite codes) and
@@ -330,26 +214,19 @@ pincer/ast_res/v1
 # (captures COPD patients via recorded exacerbations/events)
 # ACTION FOR QUINT MEETING: create bristol/copd-diagnosis-snomed/
 # using SNOMED 195951007 and descendant concepts
-
 # --- ARI PRIMARY CARE ~ non-specific (SNOMED) ---
 # [SENSITIVE] 140 codes ~ Warren-Gash checked ~ updated Nov 2025
 # Non-specific ARI codes ~ use with WHO ILI definition for sensitivity
 # NOTE: newer version 3a1da458 (Nov 2025) available ~ update from 30f1c6ca
 # https://www.opencodelists.org/codelist/opensafely/acute-respiratory-illness-primary-care/3a1da458/
 opensafely/acute-respiratory-illness-primary-care/3a1da458
-
 # --- RSV PRIMARY CARE ~ updated version ---
 # [NOTE] Newer version available: 13907155 (Nov 2025)
 # vs current 47b6884f in repo ~ Quint reviewed ~ update recommended
 # https://www.opencodelists.org/codelist/opensafely/rsv-identification-primary-care/13907155/
 # Remove old version from codelists.txt and replace with:
 # opensafely/rsv-identification-primary-care/13907155
-
-
-# =================================================================
 # SECTION 10: COPD ~ COMPLETE CODELIST SET
-# =================================================================
-
 # --- COPD DIAGNOSIS ~ primary care (SNOMED) BROAD ---
 # [SPECIFIC] 56 codes ~ NHSD COPD_COD refset ~ Sep 2025 ~ most recent
 # Official NHS QOF register codelist ~ actively maintained
@@ -357,7 +234,6 @@ opensafely/acute-respiratory-illness-primary-care/3a1da458
 # Includes emphysema subtypes, ACOS, acute exacerbation codes
 # https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copd_cod/20250912/
 nhsd-primary-care-domain-refsets/copd_cod/20250912
-
 # --- COPD DIAGNOSIS ~ primary care (SNOMED) NARROW ---
 # [SENSITIVE] 44 codes ~ QCovid risk assessment tool ~ NHSD
 # Used in COVID-19 Population Risk Assessment ~ NHS England
@@ -366,21 +242,17 @@ nhsd-primary-care-domain-refsets/copd_cod/20250912
 # CAUTION: contains one unrecognised code: 10692761000119100 (ACOS)
 # https://www.opencodelists.org/codelist/qcovid/has_copd/7adcea65/
 qcovid/has_copd/7adcea65
-
 # --- COPD RESOLVED ~ primary care (SNOMED) ---
 # [SPECIFIC] 1 code only ~ 941201000000103 (COPD resolved)
 # NHSD COPDRES_COD refset ~ Sep 2025
 # USE TO EXCLUDE resolved COPD from active COPD population definition
 # https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdres_cod/20250912/
 nhsd-primary-care-domain-refsets/copdres_cod/20250912
-
 # --- COPD ANNUAL REVIEW ~ primary care (SNOMED) ---
 # [MODIFIABLE RISK FACTOR] 3 codes ~ QOF Business Rules v44
 # Annual review, 3-monthly review, 6-monthly review
-# Signed off: Richard Croker & Brian MacKenna ~ Feb 2021
 # https://www.opencodelists.org/codelist/opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170/
 opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170
-
 # --- COPD EXACERBATIONS ~ primary care (SNOMED) SPECIFIC ---
 # [SPECIFIC] 9 codes ~ Whittaker & Quint ~ CONVALESCENCE project
 # Pure COPD exacerbation codes only ~ no ARI contamination
@@ -388,7 +260,6 @@ opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170
 # primary analysis where clean COPD exacerbation definition needed
 # https://www.opencodelists.org/codelist/bristol/copd-exacerbations/2896912f/
 bristol/copd-exacerbations/2896912f
-
 # --- COPD EXACERBATIONS ~ primary care (SNOMED) SENSITIVE ---
 # [SENSITIVE] 53 codes ~ Whittaker & Quint ~ CONVALESCENCE project
 # Broad ~ includes acute bronchitis, RSV, influenza, COVID bronchitis
@@ -396,7 +267,6 @@ bristol/copd-exacerbations/2896912f
 # USE FOR: sensitivity analysis broader COPD exacerbation capture
 # https://www.opencodelists.org/codelist/bristol/copd-exacerbations-snomed/162ebd1c/
 bristol/copd-exacerbations-snomed/162ebd1c
-
 # --- COPD EXACERBATION ~ secondary care (ICD-10) ---
 # [SPECIFIC] 2 codes ~ validated algorithm ~ Rothnie & Quint 2016
 # Part of 3-criteria algorithm: (1) COPD exacerbation code any position
@@ -404,10 +274,8 @@ bristol/copd-exacerbations-snomed/162ebd1c
 # Reference: Rothnie KJ, Quint JK et al. Clin Epidemiol. 2016;8:771-782
 # https://www.opencodelists.org/codelist/opensafely/copd-exacerbation/6858db5b/
 opensafely/copd-exacerbation/6858db5b
-
 # --- COPD MEDICATIONS ~ primary care (BNF/dm+d) BROAD ---
 # Already in repo: bristol/copd-medications-bnf/4b00637c
-
 # --- COPD DRUG CODES ~ primary care (dm+d) COMPREHENSIVE ---
 # [SENSITIVE] 738 codes ~ NHS C19COPDDRUG_COD drug refset ~ Sep 2025
 # Most comprehensive COPD drug list available ~ weekly dm+d updates
@@ -415,54 +283,23 @@ opensafely/copd-exacerbation/6858db5b
 # Use for completeness check against bristol/copd-medications-bnf
 # https://www.opencodelists.org/codelist/nhs-drug-refsets/c19copddrug_cod/20250912/
 nhs-drug-refsets/c19copddrug_cod/20250912
-
-
-# =================================================================
-# SECTION 10: COPD ~ COMPLETE CODELIST SET
-# =================================================================
-
 # COPD DIAGNOSIS ~ primary care BROAD
 # [INCLUDE ~ SPECIFIC] 56 codes ~ NHSD COPD_COD refset ~ Sep 2025
-# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copd_cod/20250912/
-nhsd-primary-care-domain-refsets/copd_cod/20250912
-
 # COPD DIAGNOSIS ~ primary care NARROW
 # [SENSITIVITY] 44 codes ~ QCovid risk assessment ~ NHS England
-# https://www.opencodelists.org/codelist/qcovid/has_copd/7adcea65/
-qcovid/has_copd/7adcea65
-
 # COPD RESOLVED ~ primary care
 # [EXCLUDE] 1 code ~ 941201000000103 ~ NHSD COPDRES_COD ~ Sep 2025
-# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdres_cod/20250912/
-nhsd-primary-care-domain-refsets/copdres_cod/20250912
-
 # COPD ANNUAL REVIEW ~ primary care
 # [MODIFIABLE] 3 codes ~ QOF v44 ~ Croker & MacKenna Feb 2021
-# https://www.opencodelists.org/codelist/opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170/
-opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170
-
 # COPD CARE REVIEW INVITE ~ primary care
 # [MODIFIABLE] 14 codes ~ NHSD COPDINVITE_COD ~ Sep 2025
 # https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdinvite_cod/20250912/
 nhsd-primary-care-domain-refsets/copdinvite_cod/20250912
-
 # COPD EXACERBATIONS ~ primary care SPECIFIC
 # [PRIMARY] 9 codes ~ Whittaker & Quint ~ CONVALESCENCE Aug 2022
-# https://www.opencodelists.org/codelist/bristol/copd-exacerbations/2896912f/
-bristol/copd-exacerbations/2896912f
-
 # COPD EXACERBATIONS ~ primary care SENSITIVE
 # [SENSITIVITY] 53 codes ~ Whittaker & Quint ~ CONVALESCENCE Apr 2023
-# https://www.opencodelists.org/codelist/bristol/copd-exacerbations-snomed/162ebd1c/
-bristol/copd-exacerbations-snomed/162ebd1c
-
 # COPD EXACERBATION ~ secondary care ICD-10
 # [PRIMARY] 2 codes ~ Rothnie & Quint Clin Epidemiol 2016 validated algorithm
-# https://www.opencodelists.org/codelist/opensafely/copd-exacerbation/6858db5b/
-opensafely/copd-exacerbation/6858db5b
-
 # COPD DRUG CODES ~ comprehensive dm+d
 # [MEDICATION ~ BROAD] 738 codes ~ NHS C19COPDDRUG_COD ~ Sep 2025
-# https://www.opencodelists.org/codelist/nhs-drug-refsets/c19copddrug_cod/20250912/
-nhs-drug-refsets/c19copddrug_cod/20250912
-

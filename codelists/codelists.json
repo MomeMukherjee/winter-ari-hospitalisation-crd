@@ -79,10 +79,10 @@
       "sha": "c4cc0de439258471ee7788af4138b674fabaeb32"
     },
     "opensafely-rsv-identification-primary-care.csv": {
-      "id": "opensafely/rsv-identification-primary-care/47b6884f",
-      "url": "https://www.opencodelists.org/codelist/opensafely/rsv-identification-primary-care/47b6884f/",
-      "downloaded_at": "2026-06-01 05:20:54.103758Z",
-      "sha": "e0a6b548665f92602c8ed8ce6faf89b0285418cd"
+      "id": "opensafely/rsv-identification-primary-care/13907155",
+      "url": "https://www.opencodelists.org/codelist/opensafely/rsv-identification-primary-care/13907155/",
+      "downloaded_at": "2026-06-07 06:54:14.522905Z",
+      "sha": "13cf42ed070c699d2d9734698fc275f6e610aaa6"
     },
     "opensafely-myocardial-infarction.csv": {
       "id": "opensafely/myocardial-infarction/2020-06-25",
@@ -143,6 +143,78 @@
       "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/",
       "downloaded_at": "2026-06-07 06:15:33.741883Z",
       "sha": "40b9e08f0468a0cb15af222d626da906d029911f"
+    },
+    "nhsd-primary-care-domain-refsets-mildintast_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/mildintast_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/mildintast_cod/20250912/",
+      "downloaded_at": "2026-06-07 06:54:21.482085Z",
+      "sha": "8f09d48c94e9a946ec7914a4aa4ceaae6d7a8125"
+    },
+    "pincer-ast_res.csv": {
+      "id": "pincer/ast_res/v1.8",
+      "url": "https://www.opencodelists.org/codelist/pincer/ast_res/v1.8/",
+      "downloaded_at": "2026-06-07 06:54:22.250097Z",
+      "sha": "98e2d004cc77c059f3383e22b6d909c561439040"
+    },
+    "opensafely-acute-respiratory-illness-primary-care.csv": {
+      "id": "opensafely/acute-respiratory-illness-primary-care/3a1da458",
+      "url": "https://www.opencodelists.org/codelist/opensafely/acute-respiratory-illness-primary-care/3a1da458/",
+      "downloaded_at": "2026-06-07 06:54:23.071528Z",
+      "sha": "0705097b348887dec424e101aad7e0670b2347c9"
+    },
+    "nhsd-primary-care-domain-refsets-copd_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/copd_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copd_cod/20250912/",
+      "downloaded_at": "2026-06-07 06:54:23.869190Z",
+      "sha": "57431dbda7129d9c915a404dff0348cfcc9cd6f6"
+    },
+    "qcovid-has_copd.csv": {
+      "id": "qcovid/has_copd/7adcea65",
+      "url": "https://www.opencodelists.org/codelist/qcovid/has_copd/7adcea65/",
+      "downloaded_at": "2026-06-07 06:54:24.649899Z",
+      "sha": "fbb93ee506b4d8c6d39f054581eb7b41562dc165"
+    },
+    "nhsd-primary-care-domain-refsets-copdres_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/copdres_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdres_cod/20250912/",
+      "downloaded_at": "2026-06-07 06:54:25.455278Z",
+      "sha": "58b2a092a7379250596e0a46897d1ae8e95277ca"
+    },
+    "opensafely-chronic-obstructive-pulmonary-disease-copd-review-qof.csv": {
+      "id": "opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170",
+      "url": "https://www.opencodelists.org/codelist/opensafely/chronic-obstructive-pulmonary-disease-copd-review-qof/01cfd170/",
+      "downloaded_at": "2026-06-07 06:54:26.278380Z",
+      "sha": "e2bd6c6bd876347a2546020c4ebfb4b8731d6b71"
+    },
+    "bristol-copd-exacerbations.csv": {
+      "id": "bristol/copd-exacerbations/2896912f",
+      "url": "https://www.opencodelists.org/codelist/bristol/copd-exacerbations/2896912f/",
+      "downloaded_at": "2026-06-07 06:54:27.106177Z",
+      "sha": "cd99911a547ee5a18220f62d36579af015f3b793"
+    },
+    "bristol-copd-exacerbations-snomed.csv": {
+      "id": "bristol/copd-exacerbations-snomed/162ebd1c",
+      "url": "https://www.opencodelists.org/codelist/bristol/copd-exacerbations-snomed/162ebd1c/",
+      "downloaded_at": "2026-06-07 06:54:27.899629Z",
+      "sha": "b0e32941638b2da1cc4584c0a6f092587a6589f7"
+    },
+    "opensafely-copd-exacerbation.csv": {
+      "id": "opensafely/copd-exacerbation/6858db5b",
+      "url": "https://www.opencodelists.org/codelist/opensafely/copd-exacerbation/6858db5b/",
+      "downloaded_at": "2026-06-07 06:54:28.712880Z",
+      "sha": "df8ebce026cf3cbbdde3e32a7698b243019b4175"
+    },
+    "nhs-drug-refsets-c19copddrug_cod.csv": {
+      "id": "nhs-drug-refsets/c19copddrug_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhs-drug-refsets/c19copddrug_cod/20250912/",
+      "downloaded_at": "2026-06-07 06:54:29.996362Z",
+      "sha": "1b37ffdfdf5ffd545d2b191ced79ae3edf0feecc"
+    },
+    "nhsd-primary-care-domain-refsets-copdinvite_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/copdinvite_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/copdinvite_cod/20250912/",
+      "downloaded_at": "2026-06-07 06:54:30.853922Z",
+      "sha": "0781c1da7c44d0d6bad2b7565af60c3cfb53b988"
     }
   }
 }
