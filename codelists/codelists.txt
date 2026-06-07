@@ -126,7 +126,7 @@ bristol/urti-snomed/484da386
 # --- RSV (primary care) ---
 # [SENSITIVE] Quint-checked. Aug 2024
 # Use for primary care RSV identification
-opensafely/rsv-identification-primary-care/47b6884f
+opensafely/rsv-identification-primary-care/13907155
 
 
 # =================================================================
@@ -240,4 +240,108 @@ nhs-drug-refsets/copdicsdrug_cod/20250912
 # https://www.thelancet.com/journals/lanepe/article/PIIS2666-7762(24)00193-0/
 # Using bristol/urti-snomed (already included above) +
 # bristol/pneumonia-snomed (already included above) as combined RTI proxy
+
+
+# =================================================================
+# SECTION 8: CRD DIAGNOSIS ~ PRIMARY CARE SNOMED (population definition)
+# =================================================================
+
+# --- ASTHMA DIAGNOSIS ~ primary care (SNOMED) ---
+# [SPECIFIC] 141 codes ~ NHSD AST_COD refset ~ Sep 2025 (most recent)
+# Official NHS QOF refset ~ actively maintained ~ best TPP coverage
+# PREFERRED over opensafely/asthma-diagnosis-snomed (320 codes, 2020 only,
+# auto-converted from Read, includes monitoring/triggers/admin codes)
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/
+nhsd-primary-care-domain-refsets/ast_cod/20250912
+
+# --- ASTHMA RESOLVED ~ primary care (SNOMED) ---
+# [SPECIFIC] PINCER/PRIMIS ~ use to EXCLUDE patients with resolved asthma
+# from active asthma CRD population definition
+# https://www.opencodelists.org/codelist/pincer/ast_res/v1/
+# [GAP] Verify exact version ~ check pincer/ast_res/ on opencodelists.org
+# pincer/ast_res/<version>
+
+# --- COPD DIAGNOSIS ~ primary care (SNOMED) ---
+# [GAP] No equivalent NHSD COPD_COD refset confirmed yet
+# opensafely/current-copd/2020-05-06 exists but is CTV3
+# Check: nhsd-primary-care-domain-refsets/copd_cod/ on opencodelists.org
+# [TEMPORARY] using bristol/exacerbations-of-copd for COPD identification
+# until confirmed SNOMED diagnosis codelist found
+
+
+# =================================================================
+# SECTION 8: CRD DIAGNOSIS ~ PRIMARY CARE SNOMED (population definition)
+# =================================================================
+
+# --- ASTHMA DIAGNOSIS ~ primary care (SNOMED) ---
+# [SPECIFIC] 141 codes ~ NHSD AST_COD refset ~ Sep 2025 (most recent)
+# Official NHS QOF refset ~ actively maintained ~ best TPP coverage
+# PREFERRED over opensafely/asthma-diagnosis-snomed (320 codes, 2020 only,
+# auto-converted from Read, includes monitoring/triggers/admin codes)
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/
+nhsd-primary-care-domain-refsets/ast_cod/20250912
+
+# --- ASTHMA RESOLVED ~ primary care (SNOMED) ---
+# [SPECIFIC] PINCER/PRIMIS ~ use to EXCLUDE patients with resolved asthma
+# from active asthma CRD population definition
+# https://www.opencodelists.org/codelist/pincer/ast_res/v1/
+# [GAP] Verify exact version ~ check pincer/ast_res/ on opencodelists.org
+# pincer/ast_res/<version>
+
+# --- COPD DIAGNOSIS ~ primary care (SNOMED) ---
+# [GAP] No equivalent NHSD COPD_COD refset confirmed yet
+# opensafely/current-copd/2020-05-06 exists but is CTV3
+# Check: nhsd-primary-care-domain-refsets/copd_cod/ on opencodelists.org
+# [TEMPORARY] using bristol/exacerbations-of-copd for COPD identification
+# until confirmed SNOMED diagnosis codelist found
+
+
+# =================================================================
+# SECTION 9: CRD DIAGNOSIS ~ PRIMARY CARE SNOMED
+# (population definition ~ who HAS each CRD)
+# =================================================================
+
+# --- ASTHMA DIAGNOSIS ~ primary care ---
+# [SPECIFIC] 141 codes ~ NHSD AST_COD refset ~ Sep 2025 ~ most recent
+# Official NHS QOF refset ~ actively maintained ~ best TPP coverage
+# PREFERRED over opensafely/asthma-diagnosis-snomed (320 codes, 2020,
+# auto-converted from Read ~ includes monitoring/triggers/admin codes)
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/
+nhsd-primary-care-domain-refsets/ast_cod/20250912
+
+# --- ASTHMA MILD/INTERMITTENT DIAGNOSIS ~ primary care ---
+# [SENSITIVE] 23 codes ~ NHSD MILDINTAST_COD refset ~ Sep 2025
+# Use for subgroup analysis ~ mild vs moderate/severe asthma
+# https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/mildintast_cod/20250912/
+nhsd-primary-care-domain-refsets/mildintast_cod/20250912
+
+# --- ASTHMA RESOLVED ~ primary care ---
+# [SPECIFIC] PINCER/PRIMIS ~ use to EXCLUDE patients with resolved asthma
+# from active asthma CRD population definition
+# https://www.opencodelists.org/codelist/pincer/ast_res/v1/
+# [GAP] Version confirmed as v1 ~ verify hash before running on real data
+pincer/ast_res/v1
+
+# --- COPD DIAGNOSIS ~ primary care ---
+# [GAP] No NHSD COPD_COD diagnosis refset exists (unlike asthma)
+# NHSD only has: copdinvite_cod (14 care review invite codes) and
+# copdpcadec_cod (1 decline code) ~ neither suitable for diagnosis
+# Best available: bristol/exacerbations-of-copd already in repo
+# (captures COPD patients via recorded exacerbations/events)
+# ACTION FOR QUINT MEETING: create bristol/copd-diagnosis-snomed/
+# using SNOMED 195951007 and descendant concepts
+
+# --- ARI PRIMARY CARE ~ non-specific (SNOMED) ---
+# [SENSITIVE] 140 codes ~ Warren-Gash checked ~ updated Nov 2025
+# Non-specific ARI codes ~ use with WHO ILI definition for sensitivity
+# NOTE: newer version 3a1da458 (Nov 2025) available ~ update from 30f1c6ca
+# https://www.opencodelists.org/codelist/opensafely/acute-respiratory-illness-primary-care/3a1da458/
+opensafely/acute-respiratory-illness-primary-care/3a1da458
+
+# --- RSV PRIMARY CARE ~ updated version ---
+# [NOTE] Newer version available: 13907155 (Nov 2025)
+# vs current 47b6884f in repo ~ Quint reviewed ~ update recommended
+# https://www.opencodelists.org/codelist/opensafely/rsv-identification-primary-care/13907155/
+# Remove old version from codelists.txt and replace with:
+# opensafely/rsv-identification-primary-care/13907155
 

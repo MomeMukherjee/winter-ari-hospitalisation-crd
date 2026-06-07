@@ -137,6 +137,12 @@
       "url": "https://www.opencodelists.org/codelist/nhs-drug-refsets/copdicsdrug_cod/20250912/",
       "downloaded_at": "2026-06-07 01:44:36.020278Z",
       "sha": "54d8e41aa77513a0258cb2d9e7beb53da1bf7c55"
+    },
+    "nhsd-primary-care-domain-refsets-ast_cod.csv": {
+      "id": "nhsd-primary-care-domain-refsets/ast_cod/20250912",
+      "url": "https://www.opencodelists.org/codelist/nhsd-primary-care-domain-refsets/ast_cod/20250912/",
+      "downloaded_at": "2026-06-07 06:15:33.741883Z",
+      "sha": "40b9e08f0468a0cb15af222d626da906d029911f"
     }
   }
 }
