@@ -12,5 +12,3 @@ J11,Influenza due to unidentified influenza virus
 J110,Influenza due to unidentified influenza virus with pneumonia
 J111,Influenza due to unidentified influenza virus with other respiratory manifestations
 J118,Influenza due to unidentified influenza virus with other manifestations
-EOFcat > codelists/local/influenza-icd10.csv << 'EOF'
-
