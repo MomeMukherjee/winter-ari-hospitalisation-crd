@@ -1,85 +1,168 @@
-version: "5.0"
+version: '3.0'
+
+expectations:
+  population_size: 500000
 
 actions:
 
-  generate_dataset_2017:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2017.csv.gz
-      -- --season-year 2017
+  # ─────────────────────────────────────────────
+  # DATASET DEFINITIONS  (one per winter season)
+  # ─────────────────────────────────────────────
+
+  generate_dataset_2017_18:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py
+      --output output/dataset_2017_18.csv.gz
+      --dummy-tables tests/dummy_tables
+      -- --season 2017_18
     outputs:
       highly_sensitive:
-        dataset: output/dataset_2017.csv.gz
+        dataset: output/dataset_2017_18.csv.gz
 
-  generate_dataset_2018:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2018.csv.gz
-      -- --season-year 2018
+  generate_dataset_2018_19:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py
+      --output output/dataset_2018_19.csv.gz
+      --dummy-tables tests/dummy_tables
+      -- --season 2018_19
     outputs:
       highly_sensitive:
-        dataset: output/dataset_2018.csv.gz
+        dataset: output/dataset_2018_19.csv.gz
 
-  generate_dataset_2019:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2019.csv.gz
-      -- --season-year 2019
+  generate_dataset_2019_20:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py
+      --output output/dataset_2019_20.csv.gz
+      --dummy-tables tests/dummy_tables
+      -- --season 2019_20
     outputs:
       highly_sensitive:
-        dataset: output/dataset_2019.csv.gz
+        dataset: output/dataset_2019_20.csv.gz
 
-  generate_dataset_2020:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2020.csv.gz
-      -- --season-year 2020
+  generate_dataset_2020_21:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py
+      --output output/dataset_2020_21.csv.gz
+      --dummy-tables tests/dummy_tables
+      -- --season 2020_21
     outputs:
       highly_sensitive:
-        dataset: output/dataset_2020.csv.gz
+        dataset: output/dataset_2020_21.csv.gz
 
-  generate_dataset_2021:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2021.csv.gz
-      -- --season-year 2021
+  generate_dataset_2021_22:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py
+      --output output/dataset_2021_22.csv.gz
+      --dummy-tables tests/dummy_tables
+      -- --season 2021_22
     outputs:
       highly_sensitive:
-        dataset: output/dataset_2021.csv.gz
+        dataset: output/dataset_2021_22.csv.gz
 
-  generate_dataset_2022:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2022.csv.gz
-      -- --season-year 2022
+  generate_dataset_2022_23:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py
+      --output output/dataset_2022_23.csv.gz
+      --dummy-tables tests/dummy_tables
+      -- --season 2022_23
     outputs:
       highly_sensitive:
-        dataset: output/dataset_2022.csv.gz
+        dataset: output/dataset_2022_23.csv.gz
 
-  generate_dataset_2023:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2023.csv.gz
-      -- --season-year 2023
+  generate_dataset_2023_24:
+    run: ehrql:v1 generate-dataset analysis/dataset_definition.py
+      --output output/dataset_2023_24.csv.gz
+      --dummy-tables tests/dummy_tables
+      -- --season 2023_24
     outputs:
       highly_sensitive:
-        dataset: output/dataset_2023.csv.gz
+        dataset: output/dataset_2023_24.csv.gz
 
-  generate_dataset_2024:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2024.csv.gz
-      -- --season-year 2024
+  # ─────────────────────────────────────────────
+  # Q1: BASELINE DEMOGRAPHICS + DESCRIPTIVE
+  # ─────────────────────────────────────────────
+
+  descriptive_stats:
+    run: r:v2 analysis/01_descriptive_stats.R
+    needs:
+      - generate_dataset_2017_18
+      - generate_dataset_2018_19
+      - generate_dataset_2019_20
+      - generate_dataset_2020_21
+      - generate_dataset_2021_22
+      - generate_dataset_2022_23
+      - generate_dataset_2023_24
     outputs:
-      highly_sensitive:
-        dataset: output/dataset_2024.csv.gz
+      moderately_sensitive:
+        tables: output/tables/table1_*.csv
+        figures: output/figures/fig_demographics_*.png
 
-  generate_dataset_2025:
-    run: >
-      ehrql:v1 generate-dataset analysis/dataset_definition.py
-      --output output/dataset_2025.csv.gz
-      -- --season-year 2025
+  # ─────────────────────────────────────────────
+  # Q1: TEMPORAL TRENDS (weekly time-series)
+  # ─────────────────────────────────────────────
+
+  temporal_trends:
+    run: r:v2 analysis/02_temporal_trends.R
+    needs:
+      - generate_dataset_2017_18
+      - generate_dataset_2018_19
+      - generate_dataset_2019_20
+      - generate_dataset_2020_21
+      - generate_dataset_2021_22
+      - generate_dataset_2022_23
+      - generate_dataset_2023_24
     outputs:
-      highly_sensitive:
-        dataset: output/dataset_2025.csv.gz
+      moderately_sensitive:
+        tables: output/tables/trend_*.csv
+        figures: output/figures/fig_trend_*.png
 
+  # ─────────────────────────────────────────────
+  # Q2: RISK FACTOR ASSOCIATIONS
+  # ─────────────────────────────────────────────
+
+  risk_factors:
+    run: r:v2 analysis/03_risk_factors.R
+    needs:
+      - generate_dataset_2017_18
+      - generate_dataset_2018_19
+      - generate_dataset_2019_20
+      - generate_dataset_2020_21
+      - generate_dataset_2021_22
+      - generate_dataset_2022_23
+      - generate_dataset_2023_24
+    outputs:
+      moderately_sensitive:
+        tables: output/tables/rf_*.csv
+        figures: output/figures/fig_rf_*.png
+
+  # ─────────────────────────────────────────────
+  # Q3i: INDIVIDUAL-LEVEL PREDICTION MODEL
+  # ─────────────────────────────────────────────
+
+  individual_prediction_model:
+    run: r:v2 analysis/04_individual_prediction_model.R
+    needs:
+      - generate_dataset_2017_18
+      - generate_dataset_2018_19
+      - generate_dataset_2019_20
+      - generate_dataset_2020_21
+      - generate_dataset_2021_22
+      - generate_dataset_2022_23
+      - generate_dataset_2023_24
+    outputs:
+      moderately_sensitive:
+        tables: output/models/indiv_model_*.csv
+        figures: output/figures/fig_model_indiv_*.png
+
+  # ─────────────────────────────────────────────
+  # Q3ii: GP PRACTICE-LEVEL PREDICTION MODEL
+  # ─────────────────────────────────────────────
+
+  gp_practice_model:
+    run: r:v2 analysis/05_gp_practice_model.R
+    needs:
+      - generate_dataset_2017_18
+      - generate_dataset_2018_19
+      - generate_dataset_2019_20
+      - generate_dataset_2020_21
+      - generate_dataset_2021_22
+      - generate_dataset_2022_23
+      - generate_dataset_2023_24
+    outputs:
+      moderately_sensitive:
+        tables: output/models/gp_model_*.csv
+        figures: output/figures/fig_model_gp_*.png
