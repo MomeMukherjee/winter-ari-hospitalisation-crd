@@ -29,8 +29,8 @@ dataset.define_population(is_registered & is_alive)
 # 4. BASELINE DEMOGRAPHICS
 dataset.age = patients.age_on(winter_start)
 dataset.sex = patients.sex
-# Fixed: Accessing the direct practice region function available on the registration row
-dataset.nhs_region = practice_registrations.for_patient_on(winter_start).practice_nhs_region
+# Fixed: Using the exact region attribute name confirmed by the compiler error
+dataset.nhs_region = practice_registrations.for_patient_on(winter_start).practice_nuts1_region_name
 
 # 5. CHRONIC RESPIRATORY DISEASE CODELISTS
 asthma_codes = codelist_from_csv("codelists/bristol-asthma.csv", system="snomed")
