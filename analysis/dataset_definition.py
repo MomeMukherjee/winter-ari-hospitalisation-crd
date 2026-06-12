@@ -15,7 +15,7 @@ dataset = create_dataset()
 dataset.configure_dummy_data(population_size=500000)
 
 # 3. POPULATION DENOMINATOR (Registered at start of winter and alive)
-is_registered = patients.is_registered_with_a_tpp_practice_on(winter_start)
+is_registered = patients.practice_registered_on(winter_start).exists_for_patient()
 is_alive = (patients.date_of_death > winter_start) | patients.date_of_death.is_null()
 dataset.define_population(is_registered & is_alive)
 
