@@ -1,8 +1,8 @@
 from ehrql import create_dataset, codelist_from_csv, get_parameter
-from ehrql.tables.tpp import patients, apcs
+# LINE 2: Added practice_registrations here
+from ehrql.tables.tpp import patients, apcs, practice_registrations
 
-# 1. # 1. RETRIEVE PARAMS FROM PROJECT.YAML
-# Use an underscore here! Python automatically maps the YAML hyphen to this underscore.
+# 1. RETRIEVE PARAMS FROM PROJECT.YAML
 target_year = int(get_parameter("season_year", default=2017))
 
 # Calculate structural window timelines
@@ -15,14 +15,22 @@ dataset = create_dataset()
 dataset.configure_dummy_data(population_size=500000)
 
 # 3. POPULATION DENOMINATOR (Registered at start of winter and alive)
-is_registered = patients.practice_registered_on(winter_start).exists_for_patient()
+# We find the practice registration that covers our winter start date
+is_registered = practice_registrations.where(
+    practice_registrations.start_date.is_on_or_before(winter_start)
+).where(
+    practice_registrations.end_date.is_after(winter_start) | practice_registrations.end_date.is_null()
+).exists_for_patient()
+
 is_alive = (patients.date_of_death > winter_start) | patients.date_of_death.is_null()
+
 dataset.define_population(is_registered & is_alive)
 
 # 4. BASELINE DEMOGRAPHICS
 dataset.age = patients.age_on(winter_start)
 dataset.sex = patients.sex
-dataset.nhs_region = patients.practice_registered_on(winter_start).nhs_region
+# NHS Region comes directly from the practice_registrations table too
+dataset.nhs_region = practice_registrations.for_patient_on(winter_start).nhs_region
 
 # 5. CHRONIC RESPIRATORY DISEASE CODELISTS
 asthma_codes = codelist_from_csv("codelists/bristol-asthma.csv", system="snomed")
