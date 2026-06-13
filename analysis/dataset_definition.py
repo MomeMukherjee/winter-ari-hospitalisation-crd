@@ -2,7 +2,7 @@
 ehrQL Dataset Definition for Winter ARI Hospitalisation Study
 Study: Burden of Winter ARI Hospitalisation in England (with/without CRD)
 Season: Winter 2017-18 (Oct 2017 - Mar 2018)
-Purpose: Extract adults (≥18y) registered in England with:
+Purpose: Extract patients (≥18y) registered in England with:
   - Demographics (age, sex, ethnicity, IMD, region)
   - CRD flags (asthma, COPD, ILD, bronchiectasis - individual + combined)
   - ARI hospitalisations (primary + any diagnosis position)
@@ -47,7 +47,7 @@ dataset.define_population(
 
 # Patients registered in TPP for ≥12 months before winter start
 # (registration window: Apr 2016 - Mar 2018)
-registered_adequately = adults.filter(
+registered_adequately = patients.filter(
     practice_registrations.for_patient().where(
         (practice_registrations.start_date <= registration_start) &
         ((practice_registrations.end_date.is_null()) | 
