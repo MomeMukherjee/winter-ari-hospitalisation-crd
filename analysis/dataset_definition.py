@@ -81,7 +81,7 @@ dataset.configure_dummy_data(population_size=500000)  # For dummy data testing
 dataset.age = patients.age_on(outcome_start)
 
 # Age group (for stratification)
-#  Fixed Line 84: Use .categorise() with an explicit mapping dictionary
+# Use .categorise() with an explicit mapping dictionary
 dataset.age_group = patients.age_on(outcome_start).categorise(
     {
         "18-49": (patients.age_on(outcome_start) >= 18) & (patients.age_on(outcome_start) < 50),
