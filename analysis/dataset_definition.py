@@ -56,10 +56,18 @@ registered_adequately = practice_registrations.where(
    
 
 # Patients alive at start of winter (Oct 2017)
-alive_at_winter_start = registered_adequately.where(
-    (ons_deaths.date.is_null()) | (ons_deaths.date >= outcome_start)
-)
+# 1. Define your registration status (from line 50)
+registered_adequately = practice_registrations.where(
+    (practice_registrations.start_date <= registration_start) &
+    ((practice_registrations.end_date.is_null()) | 
+     (practice_registrations.end_date >= outcome_start))
+).exists_for_patient()
 
+# 2. Define your alive status using the global patients table
+is_alive = patients.date_of_death.is_null() | (patients.date_of_death >= outcome_start)
+
+# 3. Combine them together using '&'
+alive_at_winter_start = registered_adequately & is_alive
 # Final cohort
 cohort = alive_at_winter_start
 
