@@ -81,7 +81,7 @@ dataset.configure_dummy_data(population_size=500000)  # For dummy data testing
 dataset.age = patients.age_on(outcome_start)
 
 # Age group (for stratification)
-dataset.age_group = cohort.age_on(outcome_start).categorise_by_age_band(
+dataset.age_group = patients.age_on(outcome_start).categorise_by_age_band(
     band_size=5, start_year=18
 )
 # Custom age groups for analysis
