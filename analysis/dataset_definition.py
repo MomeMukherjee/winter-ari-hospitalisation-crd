@@ -78,7 +78,7 @@ dataset = create_dataset()
 dataset.configure_dummy_data(population_size=500000)  # For dummy data testing
 
 # Age (in years at start of winter)
-dataset.age = cohort.age_on(outcome_start)
+dataset.age = patients.age_on(outcome_start)
 
 # Age group (for stratification)
 dataset.age_group = cohort.age_on(outcome_start).categorise_by_age_band(
