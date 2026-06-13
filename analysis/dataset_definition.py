@@ -94,15 +94,11 @@ dataset.age_group = case(
     when(age.is_null()).then("missing")  # Fixed: Wrapped the fallback in when().then()
 )
 # Custom age groups for analysis
-dataset.age_group_broad = cohort.age_on(outcome_start).case(
-    when((cohort.age_on(outcome_start) >= 18) & 
-         (cohort.age_on(outcome_start) < 45)).then("18-44"),
-    when((cohort.age_on(outcome_start) >= 45) & 
-         (cohort.age_on(outcome_start) < 65)).then("45-64"),
-    when((cohort.age_on(outcome_start) >= 65) & 
-         (cohort.age_on(outcome_start) < 85)).then("65-84"),
-    when(cohort.age_on(outcome_start) >= 85).then("85+"),
-    default="Unknown"
+#  Fixed Line 97: Reference 'patients' instead of 'cohort' and use case() properly
+dataset.age_group_broad = case(
+    when(patients.age_on(outcome_start) < 65).then("18-64"),
+    when(patients.age_on(outcome_start) >= 65).then("65+"),
+    when(patients.age_on(outcome_start).is_null()).then("missing")
 )
 
 # Sex (male/female)
