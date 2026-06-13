@@ -15,7 +15,7 @@ from ehrql.tables.tpp import (
     patients, 
     practice_registrations,
     clinical_events,
-    hospitalisation_apc,
+    apcs,
     ons_deaths
 )
 from datetime import date
@@ -208,20 +208,20 @@ dataset.crd_multiple = (
 # ARI = COVID-19, Influenza, RSV, Pneumonia (any position in ICD-10 codes)
 
 # Primary diagnosis position (position 0 in APCS)
-ari_primary = hospitalisation_apc.where(
-    hospitalisation_apc.admission_date.is_in_range(outcome_start, outcome_end)
+ari_primary = apcs.where(
+    apcs.admission_date.is_in_range(outcome_start, outcome_end)
 ).where(
-    hospitalisation_apc.primary_diagnosis_code.is_in(ARI_ICD10_CODES)
+    apcs.primary_diagnosis_code.is_in(ARI_ICD10_CODES)
 )
 
 dataset.ari_primary_admissions = ari_primary.count_for_patient()
 dataset.ari_primary_admission_date = ari_primary.minimum_of("admission_date")
 
 # Any diagnosis position (positions 0-19 in APCS)
-ari_any = hospitalisation_apc.where(
-    hospitalisation_apc.admission_date.is_in_range(outcome_start, outcome_end)
+ari_any = apcs.where(
+    apcs.admission_date.is_in_range(outcome_start, outcome_end)
 ).where(
-    hospitalisation_apc.all_diagnoses.contains_any(ARI_ICD10_CODES)
+    apcs.all_diagnoses.contains_any(ARI_ICD10_CODES)
 )
 
 dataset.ari_any_admissions = ari_any.count_for_patient()
@@ -229,7 +229,7 @@ dataset.ari_any_admission_date = ari_any.minimum_of("admission_date")
 
 # Length of stay (for primary position only)
 ari_los = ari_primary.calculate(
-    los = hospitalisation_apc.discharge_date - hospitalisation_apc.admission_date
+    los = apcs.discharge_date - apcs.admission_date
 ).maximum_of("los")
 dataset.ari_primary_los_days = ari_los
 
@@ -345,8 +345,8 @@ gp_consultations = clinical_events.where(
 dataset.gp_consultations_12mo = gp_consultations
 
 # Hospital admissions (count, any diagnosis)
-hospital_admissions = hospitalisation_apc.where(
-    hospitalisation_apc.admission_date.is_in_range(healthcare_start, healthcare_end)
+hospital_admissions = apcs.where(
+    apcs.admission_date.is_in_range(healthcare_start, healthcare_end)
 ).count_for_patient()
 
 dataset.hospital_admissions_12mo = hospital_admissions
