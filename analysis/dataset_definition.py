@@ -10,7 +10,7 @@ Purpose: Extract patients (≥18y) registered in England with:
 Output: One row per patient with these features
 """
 
-from ehrql import create_dataset
+from ehrql import create_dataset, categorise
 from ehrql.tables.tpp import (
     patients, 
     practice_registrations,
@@ -82,13 +82,15 @@ dataset.age = patients.age_on(outcome_start)
 
 # Age group (for stratification)
 # Use .categorise() with an explicit mapping dictionary
-dataset.age_group = patients.age_on(outcome_start).categorise(
+#  Fixed Line 85: Use categorise as a standalone function wrapper
+dataset.age_group = categorise(
     {
         "18-49": (patients.age_on(outcome_start) >= 18) & (patients.age_on(outcome_start) < 50),
         "50-64": (patients.age_on(outcome_start) >= 50) & (patients.age_on(outcome_start) < 65),
         "65-74": (patients.age_on(outcome_start) >= 65) & (patients.age_on(outcome_start) < 75),
         "75+": patients.age_on(outcome_start) >= 75,
-    }
+    },
+    default="missing"
 )
 # Custom age groups for analysis
 dataset.age_group_broad = cohort.age_on(outcome_start).case(
