@@ -38,7 +38,8 @@ outcome_end = date(2018, 3, 31)            # Mar 2018 (end of winter)
 # STEP 1: DEFINE COHORT (Age ≥18 on Oct 2017, registered in England)
 # ============================================================================
 # Patients aged ≥18 on outcome start date
-adults = patients.where(
+#Fixed Code: Define the population criteria directly on the dataset
+dataset.define_population(
     patients.age_on(outcome_start) >= 18
 )
 
