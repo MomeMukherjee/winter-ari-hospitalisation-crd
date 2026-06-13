@@ -91,7 +91,7 @@ dataset.age_group = case(
     when(age < 65).then("50-64"),
     when(age < 75).then("65-74"),
     when(age >= 75).then("75+"),
-    "missing"  # Just pass the fallback value directly here
+    when(age.is_null()).then("missing")  # Fixed: Wrapped the fallback in when().then()
 )
 # Custom age groups for analysis
 dataset.age_group_broad = cohort.age_on(outcome_start).case(
