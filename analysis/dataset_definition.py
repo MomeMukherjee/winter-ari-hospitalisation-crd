@@ -47,13 +47,13 @@ dataset.define_population(
 
 # Patients registered in TPP for ≥12 months before winter start
 # (registration window: Apr 2016 - Mar 2018)
-registered_adequately = patients.where(
-    practice_registrations.for_patient().where(
-        (practice_registrations.start_date <= registration_start) &
-        ((practice_registrations.end_date.is_null()) | 
-         (practice_registrations.end_date >= outcome_start))
-    ).exists_for_patient()
-)
+#  Fixed Code: Query practice_registrations directly instead of patients.where
+registered_adequately = practice_registrations.where(
+    (practice_registrations.start_date <= registration_start) &
+    ((practice_registrations.end_date.is_null()) | 
+     (practice_registrations.end_date >= outcome_start))
+).exists_for_patient()
+   
 
 # Patients alive at start of winter (Oct 2017)
 alive_at_winter_start = registered_adequately.where(
